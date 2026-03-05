@@ -1,5 +1,5 @@
 # SaaS-Financial-Performance-Revenue-Analytics-Dashboard-
-End-to-end SaaS revenue analytics platform: PostgreSQL + Prisma + Power BI.  Decomposed ARR into growth/churn drivers, built cohort retention analysis,  and quantified 15% margin variance across 100K+ transactions.
+Decomposed ARR into growth/churn drivers, built cohort retention analysis,  and quantified 15% margin variance across 100K+ transactions.
 
 ## 📊 Project Overview
 
