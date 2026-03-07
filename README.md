@@ -45,6 +45,9 @@ Follow the step-by-step guides in order:
 - Are we expanding existing customers or relying on new logos?
 - Which segments/regions are growing fastest?
 
+<img width="1340" height="743" alt="image" src="https://github.com/user-attachments/assets/59e18812-f3fa-43e5-82ff-2b976d84cd50" />
+
+
 ### 2️⃣ Customer Analytics Dashboard
 **Audience**: Customer Success, Sales, Product
 
