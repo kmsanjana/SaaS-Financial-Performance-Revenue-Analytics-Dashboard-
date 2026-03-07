@@ -63,6 +63,11 @@ Follow the step-by-step guides in order:
 - Which acquisition channels bring the highest-value customers?
 - What's the typical customer journey from signup to churn?
 
+customer acquisition through Aug ’25 snapshot
+
+<img width="1341" height="746" alt="image" src="https://github.com/user-attachments/assets/a26346b0-98c3-480d-b2fc-e077620a1dc9" />
+
+
 ### 3️⃣ P&L & Financial Operations Dashboard
 **Audience**: CFO, Finance Team, FP&A
 
