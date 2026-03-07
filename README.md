@@ -161,6 +161,6 @@ This project demonstrates:
 ---
 ## 📄 License
 
-MIT License - Free to use for learning purposes only.
+CopyRights reserved
 
 ---
