@@ -89,9 +89,10 @@ Follow the step-by-step guides in order:
 - Which cost component is growing fastest?
 - Should we push customers toward ACH for better margins?
 
-**P&L Financial Operations — August ’25 snapshot**
+**P&L Financial Operations — September ’25 snapshot**
 
-<img width="1340" height="749" alt="image" src="https://github.com/user-attachments/assets/91d7471d-bbd0-4cc7-9b54-16748d4dd986" />
+<img width="1338" height="757" alt="image" src="https://github.com/user-attachments/assets/ad9f820e-392b-4741-be2b-97d4fc471b6f" />
+
 
 
 ---
