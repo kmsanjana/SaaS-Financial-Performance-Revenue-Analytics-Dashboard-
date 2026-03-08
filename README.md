@@ -45,6 +45,8 @@ A production-grade **FinOps analytics platform** built to analyze subscription r
 │  • 3 role-based dashboards (Revenue, Customer, P&L)         │
 └─────────────────────────────────────────────────────────────┘
 
+---
+
 ## Power BI Dashboards
 Follow the step-by-step guides in order:
 1. **PART 1**: Connect to PostgreSQL, transform data, create 45 DAX measures
