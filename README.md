@@ -19,6 +19,32 @@ A production-grade **FinOps analytics platform** built to analyze subscription r
 
 ---
 
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  DATA LAYER                                                 │
+│  • PostgreSQL database (finops_analytics)                   │
+│  • Prisma ORM schema with 8 core models                     │
+│  • 100K+ synthetic transactions (Faker.js)                  │
+│  • 13.7K monthly snapshots, 97K daily cost records          │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  TRANSFORMATION LAYER (Power Query)                         │
+│  • Filter invoices → PAID only                              │
+│  • Filter transactions → SUCCEEDED only                      │
+│  • Aggregate daily costs → monthly granularity              │
+│  • Calendar dimension (2024-2026)                           │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  ANALYTICS LAYER (Power BI)                                 │
+│  • 45+ DAX measures (MRR, ARR, NRR, LTV, COGS, Margin)      │
+│  • Star schema data model (14 relationships)                │
+│  • 3 role-based dashboards (Revenue, Customer, P&L)         │
+└─────────────────────────────────────────────────────────────┘
+
 ## Power BI Dashboards
 Follow the step-by-step guides in order:
 1. **PART 1**: Connect to PostgreSQL, transform data, create 45 DAX measures
@@ -34,7 +60,6 @@ Follow the step-by-step guides in order:
 **Audience**: CEO, CFO, VP Revenue
 
 **Key Visuals**:
-- MRR Waterfall (New + Expansion + Contraction + Churn decomposition)
 - MRR Trend with 3-month forecast
 - ARR decomposition table (monthly drivers)
 - Revenue by Segment (SMB/MID/Enterprise) and Region (NA/EU/LATAM/APAC)
@@ -58,7 +83,6 @@ Follow the step-by-step guides in order:
 
 **Key Visuals**:
 - Cohort retention heatmap (25 cohorts × 12 months)
-- Customer lifecycle funnel (Signup → Upgrade → Active → Churned)
 - Acquisition channel ROI (volume vs revenue)
 - Segment composition shift over time
 - LTV by segment with drill-through to customer profiles
@@ -79,15 +103,14 @@ Follow the step-by-step guides in order:
 
 **Key Visuals**:
 - Monthly P&L matrix (Revenue → COGS → Gross Profit)
-- Margin variance waterfall (which cost driver changed margin?)
 - COGS breakdown (Processing/Infra/Fraud/Chargebacks)
 - Payment method economics (CARD vs ACH vs WIRE profitability)
 - Unit economics table (revenue/COGS/margin per seat)
 
 **Business Questions Answered**:
-- Why did gross margin change 15% vs last month?
-- Which cost component is growing fastest?
-- Should we push customers toward ACH for better margins?
+- Are we scaling revenue faster than COGS this month?
+- Which cost component dominates the COGS mix?
+- Which customer segments subsidize margin — and which run negative?
 
 **P&L Financial Operations — September ’25 snapshot**
 
