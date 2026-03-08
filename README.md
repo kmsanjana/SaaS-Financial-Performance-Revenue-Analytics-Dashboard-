@@ -45,7 +45,8 @@ Follow the step-by-step guides in order:
 - Are we expanding existing customers or relying on new logos?
 - Which segments/regions are growing fastest?
 
-<img width="1343" height="748" alt="image" src="https://github.com/user-attachments/assets/b163b853-43c7-430b-9da2-93308d72788a" />
+<img width="1342" height="749" alt="image" src="https://github.com/user-attachments/assets/b6b8fbec-c266-4501-b06f-524ebc910d4c" />
+
 
 
 
@@ -66,7 +67,8 @@ Follow the step-by-step guides in order:
 
 customer acquisition through Aug ’25 snapshot
 
-<img width="1341" height="746" alt="image" src="https://github.com/user-attachments/assets/a26346b0-98c3-480d-b2fc-e077620a1dc9" />
+<img width="1338" height="748" alt="image" src="https://github.com/user-attachments/assets/bdb3371a-0899-44bf-9b1a-a0f0fc052438" />
+
 
 
 ### 3️⃣ P&L & Financial Operations Dashboard
@@ -83,6 +85,9 @@ customer acquisition through Aug ’25 snapshot
 - Why did gross margin change 15% vs last month?
 - Which cost component is growing fastest?
 - Should we push customers toward ACH for better margins?
+
+<img width="1340" height="749" alt="image" src="https://github.com/user-attachments/assets/91d7471d-bbd0-4cc7-9b54-16748d4dd986" />
+
 
 ---
 
