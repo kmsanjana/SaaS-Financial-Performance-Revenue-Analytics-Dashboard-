@@ -66,7 +66,7 @@ Follow the step-by-step guides in order:
 - Which acquisition channels bring the highest-value customers?
 - What's the typical customer journey from signup to churn?
 
-customer acquisition through Aug ’25 snapshot
+**Customer acquisition through July ’25 snapshot**
 
 <img width="1338" height="748" alt="image" src="https://github.com/user-attachments/assets/bdb3371a-0899-44bf-9b1a-a0f0fc052438" />
 
