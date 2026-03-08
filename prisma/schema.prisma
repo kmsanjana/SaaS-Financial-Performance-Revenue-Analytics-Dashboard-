@@ -1,0 +1,202 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Segment {
+  SMB
+  MID
+  ENTERPRISE
+}
+
+enum Region {
+  NA
+  EU
+  LATAM
+  APAC
+}
+
+enum AcquisitionChannel {
+  ORGANIC
+  PAID_SEARCH
+  PARTNER
+  OUTBOUND
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+}
+
+enum InvoiceStatus {
+  PAID
+  FAILED
+  VOID
+}
+
+enum PaymentMethod {
+  CARD
+  ACH
+  WIRE
+}
+
+enum TransactionStatus {
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+enum CustomerEventType {
+  SIGNUP
+  UPGRADE
+  DOWNGRADE
+  CANCEL
+  REACTIVATION
+}
+
+model Customer {
+  id                  String              @id @default(cuid())
+  externalCustomerId  String              @unique
+  createdAt           DateTime
+  segment             Segment
+  region              Region
+  acquisitionChannel  AcquisitionChannel
+  baseSeatCount       Int
+  isActive            Boolean             @default(true)
+
+  subscriptions       Subscription[]
+  subscriptionMonthly SubscriptionMonthlySnapshot[]
+  invoices            Invoice[]
+  transactions        Transaction[]
+  costs               CostDailyLedger[]
+  events              CustomerEvent[]
+
+  @@index([segment])
+  @@index([region])
+  @@index([createdAt])
+}
+
+model Plan {
+  id          String   @id @default(cuid())
+  planCode    String   @unique
+  planName    String
+  baseMrr     Decimal  @db.Decimal(12, 2)
+  perSeatMrr  Decimal  @db.Decimal(12, 2)
+
+  subscriptions Subscription[]
+  monthlySnapshots SubscriptionMonthlySnapshot[]
+
+  @@index([planCode])
+}
+
+model Subscription {
+  id              String             @id @default(cuid())
+  externalSubId   String             @unique
+  customerId      String
+  planId          String
+  startDate       DateTime
+  endDate         DateTime?
+  status          SubscriptionStatus @default(ACTIVE)
+
+  customer        Customer           @relation(fields: [customerId], references: [id])
+  plan            Plan               @relation(fields: [planId], references: [id])
+  invoices         Invoice[]
+  monthlySnapshots SubscriptionMonthlySnapshot[]
+
+  @@index([customerId])
+  @@index([planId])
+  @@index([startDate])
+  @@index([status])
+}
+
+model SubscriptionMonthlySnapshot {
+  id              String   @id @default(cuid())
+  customerId      String
+  subscriptionId  String
+  planId          String
+  snapshotMonth   DateTime
+  seats           Int
+  mrr             Decimal  @db.Decimal(12, 2)
+
+  customer        Customer       @relation(fields: [customerId], references: [id])
+  subscription    Subscription   @relation(fields: [subscriptionId], references: [id])
+  plan            Plan           @relation(fields: [planId], references: [id])
+
+  @@unique([subscriptionId, snapshotMonth])
+  @@index([customerId, snapshotMonth])
+  @@index([snapshotMonth])
+}
+
+model Invoice {
+  id              String       @id @default(cuid())
+  externalInvoiceId String     @unique
+  customerId       String
+  subscriptionId   String
+  invoiceMonth     DateTime
+  amountSubtotal   Decimal     @db.Decimal(12, 2)
+  discount         Decimal     @db.Decimal(12, 2)
+  amountTotal      Decimal     @db.Decimal(12, 2)
+  paidAt           DateTime?
+  status           InvoiceStatus
+
+  customer        Customer      @relation(fields: [customerId], references: [id])
+  subscription    Subscription  @relation(fields: [subscriptionId], references: [id])
+
+  @@index([customerId, invoiceMonth])
+  @@index([invoiceMonth])
+  @@index([status])
+}
+
+model Transaction {
+  id                String            @id @default(cuid())
+  externalTxnId     String            @unique
+  customerId        String
+  ts                DateTime
+  amount            Decimal           @db.Decimal(14, 2)
+  currency          String            @default("USD")
+  paymentMethod     PaymentMethod
+  status            TransactionStatus
+  merchantFeeRevenue Decimal          @db.Decimal(14, 4)
+
+  customer          Customer          @relation(fields: [customerId], references: [id])
+
+  @@index([customerId, ts])
+  @@index([ts])
+  @@index([paymentMethod])
+  @@index([status])
+}
+
+model CostDailyLedger {
+  id              String   @id @default(cuid())
+  externalCostId  String   @unique
+  customerId      String
+  date            DateTime
+
+  processingFees  Decimal  @db.Decimal(14, 4)
+  infraCost       Decimal  @db.Decimal(14, 4)
+  fraudToolCost   Decimal  @db.Decimal(14, 4)
+  chargebackLoss  Decimal  @db.Decimal(14, 4)
+
+  customer        Customer @relation(fields: [customerId], references: [id])
+
+  @@unique([customerId, date])
+  @@index([date])
+  @@index([customerId, date])
+}
+
+model CustomerEvent {
+  id              String           @id @default(cuid())
+  externalEventId String           @unique
+  customerId      String
+  eventTs         DateTime
+  eventType       CustomerEventType
+
+  customer        Customer         @relation(fields: [customerId], references: [id])
+
+  @@index([customerId, eventTs])
+  @@index([eventType])
+}
