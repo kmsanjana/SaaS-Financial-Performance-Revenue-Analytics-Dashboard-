@@ -45,7 +45,8 @@ Follow the step-by-step guides in order:
 - Are we expanding existing customers or relying on new logos?
 - Which segments/regions are growing fastest?
 
-<img width="1342" height="749" alt="image" src="https://github.com/user-attachments/assets/b6b8fbec-c266-4501-b06f-524ebc910d4c" />
+<img width="1342" height="751" alt="image" src="https://github.com/user-attachments/assets/03c6a58a-bfb7-404d-9839-31ea334776b0" />
+
 
 
 
