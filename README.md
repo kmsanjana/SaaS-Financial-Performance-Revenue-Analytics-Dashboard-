@@ -44,6 +44,7 @@ A production-grade **FinOps analytics platform** built to analyze subscription r
 │  • Star schema data model (14 relationships)                │
 │  • 3 role-based dashboards (Revenue, Customer, P&L)         │
 └─────────────────────────────────────────────────────────────┘
+```
 
 ---
 
