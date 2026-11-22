@@ -123,7 +123,7 @@ Follow the step-by-step guides in order:
 
 ---
 
-## 🗄️ Data Model
+##  🗄️ Data Model
 
 ### Core Tables
 | Table | Records | Purpose |
